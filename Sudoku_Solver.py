@@ -10,6 +10,8 @@ test_board = [
     [0, 4, 9, 2, 0, 6, 0, 0, 7]   
 ]
 
+
+"""The main function that helps solve the puzzle recursively with help from the helper functions"""
 def solve_sudoku(board):
 
     find = find_empty(board)
@@ -30,7 +32,7 @@ def solve_sudoku(board):
     return False
 
 
-
+"""Function to check the validity of the numbers placed on the board"""
 def valid(board, num, pos):
 
     # Check row
@@ -55,7 +57,7 @@ def valid(board, num, pos):
     return True
 
 
-
+"""Function to help print the board in a user friendly way"""
 def print_board(board):
     for i in range(len(board)):
         if i % 3 == 0 and i != 0:
@@ -71,7 +73,7 @@ def print_board(board):
                 print(str(board[i][j]) + " ", end="")
 
 
-
+"""Function to help find the empty slots on the board"""
 def find_empty(board):
     for i in range(len(board)):
         for j in range(len(board[0])):
@@ -79,6 +81,8 @@ def find_empty(board):
                 return (i, j) #row, column
     return None
 
+
+"""Printing out the outputs of a solved board"""
 print_board(test_board)
 solve_sudoku(test_board)
 print("_____________________________")
