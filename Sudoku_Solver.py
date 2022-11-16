@@ -10,11 +10,32 @@ test_board = [
     [0, 4, 9, 2, 0, 6, 0, 0, 7]   
 ]
 
+def solve_sudoku(board):
+
+    find = find_empty(board)
+    if not find:
+        return True
+    else:
+        row, col = find
+    
+    for i in range(1, 10):
+        if valid(board, i, (row, col)):
+            board[row][col] = i
+
+            if solve_sudoku(board):
+                return True
+
+            board[row][col] = 0
+
+    return False
+
+
+
 def valid(board, num, pos):
 
     # Check row
     for i in range(len(board[0])):
-        if board[pos[0]][i] == num and pos[i] != i:
+        if board[pos[0]][i] == num and pos[1] != i:
             return False
     
     # checking column
@@ -50,10 +71,19 @@ def print_board(board):
                 print(str(board[i][j]) + " ", end="")
 
 
-print_board(test_board)
 
 def find_empty(board):
     for i in range(len(board)):
         for j in range(len(board[0])):
             if board[i][j] == 0:
                 return (i, j) #row, column
+    return None
+
+print_board(test_board)
+solve_sudoku(test_board)
+print("_____________________________")
+print("")
+print("*********The solved Sudoku**************")
+print("_____________________________")
+print("")
+print_board(test_board)
